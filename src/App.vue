@@ -6,3 +6,4 @@
   height: 100%;
 }
 </style>
+<style src="./assets/icons/iconfont.css" />

@@ -17,11 +17,13 @@ service.interceptors.request.use((req) => {
 // 响应拦截器:作用时机是在接收到响应数据之后，且在我们处理响应数据之前
 service.interceptors.response.use((res) => {
     // 业务逻辑处理
-    const data = res.data;
+    // const data = res.data;
     // console.log(res);
-    if (res.status !== 200) {
-        ElMessage.error(data.message || NETWORK_ERROR); // 显示错误提示信息
-        return Promise.reject(data.message || NETWORK_ERROR); // 返回一个被拒绝的Promise对象
+    const {code, data, msg} = res.data;
+
+    if (code !== 200) {
+        ElMessage.error(msg || NETWORK_ERROR); // 显示错误提示信息
+        return Promise.reject(msg || NETWORK_ERROR); // 返回一个被拒绝的Promise对象
     }
     return data; // 返回响应数据
 });
@@ -33,13 +35,15 @@ function request(options) {
         options.params = options.data; // 将请求数据设置为params参数
     }
     let isMock = config.mock; // 是否使用模拟数据，默认为配置文件中的mock值
+    // console.log(options.mock);
     if (typeof options.mock !== 'undefined') {
         isMock = options.mock; // 如果请求参数中有mock字段，则使用请求参数中的mock值（就是再决定下是否使用mock，值还是t or f）
     }
     
-    if (config.env === 'dev') {
+    if (config.env === 'prod') {
         service.defaults.baseURL = config.baseApi; // 如果是生产环境，则使用配置文件中的baseApi作为请求的基础URL
     } else {
+        // console.log(config.mockApi);
         service.defaults.baseURL = isMock ? config.mockApi : config.baseApi; // 否则根据isMock的值选择使用mockApi或baseApi作为请求的基础URL
     }
     // console.log(`Request URL: ${service.defaults.baseURL}${options.url}`);

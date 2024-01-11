@@ -7,8 +7,9 @@
       :collapse="sidebar.isCollapsed"
     >
       <h3>{{ sidebar.isCollapsed ? "后台" : "后台管理" }}</h3>
+      <!-- 这里item打错、不打:,都会导致标签项同时亮起 -->
       <el-menu-item
-        index="itme.path"
+        :index="item.label"
         v-for="item in noChildren()"
         :key="item.path"
         @click="clickMenu(item)"
@@ -19,7 +20,7 @@
 
       <!-- 导航器一 -->
       <el-sub-menu
-        index="item.label"
+        :index="item.label"
         v-for="item in hasChildren()"
         :key="item.path"
       >
@@ -34,7 +35,7 @@
             :index="subItem.path"
             v-for="(subItem, subIndex) in item.children"
             :key="subIndex"
-            @click="clickMenu(item)"
+            @click="clickMenu(subItem)"
           >
             <component class="icons" :is="subItem.icon" />
             <span>{{ subItem.label }}</span></el-menu-item
@@ -50,32 +51,66 @@ import { useSidebarStore } from "../store/index.js";
 import { useRouter } from "vue-router";
 export default {
   setup() {
+    // 侧边栏列表
     const list = [
       {
         path: "/user",
         name: "user",
         label: "用户管理",
         icon: "user",
-        url: "UserManage/UserManage",
+        // url: "UserManage/UserManage",
+      },
+      {
+        path: "/link",
+        name: "link",
+        label: "友链管理",
+        icon: "link",
+        // url: "LinkManage/LinkManage",
+      },
+      {
+        path: "/company",
+        name: "company",
+        label: "公司信息管理",
+        icon: "icon-company",
+      },
+      {
+        path: "/article",
+        name: "article",
+        label: "文章管理",
+        icon: "icon-article",
+      },
+      
+      {
+        path: "/category",
+        name: "category",
+        label: "栏目管理",
+        icon: "icon-category",
+      },
+      {
+        path: "/association",
+        name: "association",
+        label: "关联管理",
+        icon: "icon-association",
       },
       {
         label: "其他",
         icon: "more",
         path: "/other",
+        name: "other",
         children: [
           {
             path: "/page1",
             name: "page1",
             label: "页面1",
             icon: "setting",
-            url: "Other/PageOne",
+            // url: "Other/PageOne",
           },
           {
             path: "/page2",
             name: "page2",
             label: "页面2",
             icon: "setting",
-            url: "Other/PageTwo",
+            // url: "Other/PageTwo",
           },
         ],
       },

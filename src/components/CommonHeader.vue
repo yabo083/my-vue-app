@@ -6,14 +6,22 @@
           <Menu />
         </el-icon>
       </el-button>
-      <!-- <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
+      <el-breadcrumb separator="/" class="bread">
         <el-breadcrumb-item
-          ><a href="/">promotion management</a></el-breadcrumb-item
-        >
-        <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-        <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
-      </el-breadcrumb> -->
+        v-if="currentRoute.name === 'home'"
+        :to="currentRoute.path"
+      >
+        {{ currentRoute.meta.title }}
+      </el-breadcrumb-item>
+      <el-breadcrumb-item
+        v-else
+        v-for="(route, i) in matchedRoutes"
+        :key="i"
+        :to="route.path"
+      >
+        {{ route.meta.title }}
+      </el-breadcrumb-item>
+      </el-breadcrumb>
     </div>
     <div class="r-content">
       <el-dropdown>
@@ -32,7 +40,9 @@
 </template>
 
 <script>
+import { ref, watchEffect } from "vue";
 import { useSidebarStore } from "../store/index.js";
+import { useRoute } from "vue-router";
 
 export default {
   setup() {
@@ -42,9 +52,24 @@ export default {
 
     const sidebar = useSidebarStore();
 
+    const route = useRoute();
+
+    const matchedRoutes = ref([]);
+
+    const currentRoute = ref([]);
+
+    watchEffect(() => {
+      matchedRoutes.value = route.matched;
+      currentRoute.value = route;
+    });
+
+  
+
     return {
       getImgSrc,
       toggleSidebar: sidebar.toggle,
+      matchedRoutes,
+      currentRoute,
     };
   },
 };
@@ -77,5 +102,14 @@ header {
     margin-left: 10px;
     color: #fff;
   }
+}
+
+.bread {
+  color: #fff !important;
+  font-size: 14px;
+}
+.bread /deep/ span {
+  color: #fff !important;
+  cursor: pointer !important;
 }
 </style>

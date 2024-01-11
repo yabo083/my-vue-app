@@ -7,6 +7,7 @@ import './assets/less/index.less'
 import { createPinia } from 'pinia' // 导入 Pinia
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import api from './api/api.js'
+import './assets/icons/iconfont.css'
 
 const app = createApp(App)
 

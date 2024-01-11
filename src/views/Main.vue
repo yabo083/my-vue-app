@@ -4,6 +4,7 @@
       <common-aside />
       <el-container>
         <common-header />
+        <common-tag />
         <el-main class="right-main">
           <router-view />
         </el-main>
@@ -15,10 +16,11 @@
 <script>
 import CommonHeader from "../components/CommonHeader.vue";
 import CommonAside from "../components/CommonAside.vue";
+import CommonTag from "../components/CommonTag.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: { CommonHeader, CommonAside },
+  components: { CommonHeader, CommonAside, CommonTag },
 });
 </script>
 
@@ -30,7 +32,7 @@ export default defineComponent({
 }
 .common-layout {
   .lay-container {
-    flex-wrap: nowrap;
+    flex-wrap: nowrap;//不换行
     .right-main {
       height: calc(100% - 124px) !important;
     }

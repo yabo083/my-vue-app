@@ -1,0 +1,37 @@
+{
+  "id": "4406523",
+  "name": "CMS内容管理系统",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1462883",
+      "name": "category",
+      "font_class": "category",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "4448518",
+      "name": "article",
+      "font_class": "article",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "34453165",
+      "name": "association",
+      "font_class": "association",
+      "unicode": "e84b",
+      "unicode_decimal": 59467
+    },
+    {
+      "icon_id": "34453184",
+      "name": "company",
+      "font_class": "company",
+      "unicode": "e84f",
+      "unicode_decimal": 59471
+    }
+  ]
+}

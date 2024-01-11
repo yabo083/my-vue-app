@@ -1,76 +1,325 @@
-/**
- * 整个项目api的管理
- */
-
 import request from "./request.js";
 
+/**
+ * API模块
+ * @module api
+ */
+
 export default {
+
+
     /**
-     * 查询所有
-    GET /student/all
-    接口ID：126143784
-    接口地址：https://app.apifox.com/link/project/3617200/apis/api-126143784
+     * mock测试用api
      */
-    getAllStudent() {
+    getCountData() {
         return request({
-            url: '/student/all',
-            method: 'get'
+            url: '/home/getCountData',
+            method: 'get',
+            mock: true
         })
     },
-    /**
-     * 查询特定
-  GET /student/4
-  接口ID：126143825
-  接口地址：https://app.apifox.com/link/project/3617200/apis/api-126143825
-     */
-    getStudentById(id) {
+
+    getOrderData() {
         return request({
-            url: `/student/${id}`,
+            url: '/home/getChartData',
+            method: 'get',
+            mock: true
+        })
+    },
+
+
+    /**
+     * 获取链接列表
+     * @function
+     * @returns {Promise} 包含链接列表的Promise对象
+     */
+    getLinkList() {
+        return request({
+            url: '/link/list',
             method: 'get'
         })
     },
 
     /**
-     * 新增学生信息
-  POST /student/add
-  接口ID：126146664
-  接口地址：https://app.apifox.com/link/project/3617200/apis/api-126146664
+     * 添加链接
+     * @function
+     * @param {Object} link - 链接对象
+     * @returns {Promise} 包含添加结果的Promise对象
      */
-    addStudent(student) {
+    addLink(link) {
         return request({
-            url: '/student/add',
+            url: '/link/add',
             method: 'post',
-            data: student
+            data: link
         })
     },
 
     /**
-     * 新增学生信息
-  POST /student/add
-  接口ID：126146664
-  接口地址：https://app.apifox.com/link/project/3617200/apis/api-126146664
+     * 更新链接
+     * @function
+     * @param {Object} link - 链接对象
+     * @returns {Promise} 包含更新结果的Promise对象
      */
-    updateStudent(student) {
+    updateLink(link) {
         return request({
-            url: `/student/update/${student.id}`,
+            url: `/link/update`,
             method: 'put',
-            data: student
+            data: link
         })
     },
 
     /**
-     * 删除特定
-  DELETE /student/delete/2
-  接口ID：126147790
-  接口地址：https://app.apifox.com/link/project/3617200/apis/api-126147790
+     * 删除链接
+     * @function
+     * @param {string} id - 链接ID
+     * @returns {Promise} 包含删除结果的Promise对象
      */
-
-    deleteStudent(id) {
+    deleteLink(id) {
         return request({
-            url: `/student/delete/${id}`,
+            url: `/link/delete/${id}`,
             method: 'delete'
         })
-    }
+    },
 
 
-}
+    /**
+     * 获取公司信息列表
+     * @function
+     * @returns {Promise} 包含公司信息列表的Promise对象
+     */
+    getCompanyInfoList() {
+        return request({
+            url: '/companyInfo/list',
+            method: 'get'
+        })
+    },
+
+    /**
+     * 添加公司信息
+     * @function
+     * @param {Object} companyInfo - 公司信息对象
+     * @returns {Promise} 包含添加结果的Promise对象
+     */
+    addCompanyInfo(companyInfo) {
+        return request({
+            url: '/companyInfo/add',
+            method: 'post',
+            data: companyInfo
+        })
+    },
+
+    /**
+     * 更新公司信息
+     * @function
+     * @param {Object} companyInfo - 公司信息对象
+     * @returns {Promise} 包含更新结果的Promise对象
+     */
+    updateCompanyInfo(companyInfo) {
+        return request({
+            url: `/companyInfo/update`,
+            method: 'put',
+            data: companyInfo
+        })
+    },
+
+    /**
+     * 删除公司信息
+     * @function
+     * @param {string} id - 公司信息ID
+     * @returns {Promise} 包含删除结果的Promise对象
+     */
+    deleteCompanyInfo(id) {
+        return request({
+            url: `/companyInfo/delete/${id}`,
+            method: 'delete'
+        })
+    },
+
+
+    /**
+     * 获取文章列表
+     * @function
+     * @returns {Promise} 包含文章列表的Promise对象
+     */
+    getArticleList() {
+        return request({
+            url: '/article/list',
+            method: 'get'
+        })
+    },
+
+    /**
+     * 添加文章
+     * @function
+     * @param {Object} article - 文章对象
+     * @returns {Promise} 包含添加结果的Promise对象
+     */
+    addArticle(article) {
+        return request({
+            url: '/article/add',
+            method: 'post',
+            data: article
+        })
+    },
+
+    /**
+     * 更新文章
+     * @function
+     * @param {Object} article - 文章对象
+     * @returns {Promise} 包含更新结果的Promise对象
+     */
+    updateArticle(article) {
+        return request({
+            url: `/article/update`,
+            method: 'put',
+            data: article
+        })
+    },
+
+    /**
+     * 删除文章
+     * @function
+     * @param {string} id - 文章ID
+     * @returns {Promise} 包含删除结果的Promise对象
+     */
+    deleteArticle(id) {
+        return request({
+            url: `/article/delete/${id}`,
+            method: 'delete'
+        })
+    },
+
+
+    /**
+     * 获取分类列表
+     * @function
+     * @returns {Promise} 包含分类列表的Promise对象
+     */
+    getCategoryList() {
+        return request({
+            url: '/category/list',
+            method: 'get'
+        })
+    },
+
+    /**
+     * 添加分类
+     * @function
+     * @param {Object} category - 分类对象
+     * @returns {Promise} 包含添加结果的Promise对象
+     */
+    addCategory(category) {
+        return request({
+            url: '/category/add',
+            method: 'post',
+            data: category
+        })
+    },
+
+    /**
+     * 更新分类
+     * @function
+     * @param {Object} category - 分类对象
+     * @returns {Promise} 包含更新结果的Promise对象
+     */
+    updateCategory(category) {
+        return request({
+            url: `/category/update`,
+            method: 'put',
+            data: category
+        })
+    },
+
+    /**
+     * 删除分类
+     * @function
+     * @param {string} id - 分类ID
+     * @returns {Promise} 包含删除结果的Promise对象
+     */
+    deleteCategory(id) {
+        return request({
+            url: `/category/delete/${id}`,
+            method: 'delete'
+        })
+    },
+
+
+    /**
+     * 获取文章分类列表
+     * @function
+     * @returns {Promise} 包含文章分类列表的Promise对象
+     */
+    getAssociationList() {
+        return request({
+            url: '/association/list',
+            method: 'get'
+        })
+    },
+
+    /**
+     * 添加文章分类
+     * @function
+     * @param {Object} association - 文章分类对象
+     * @returns {Promise} 包含添加结果的Promise对象
+     */
+    addAssociation(selectedAssociation) {
+        return request({
+            url: '/association/add',
+            method: 'post',
+            data: selectedAssociation
+        })
+    },
+
+    /**
+     * 更新文章分类
+     * @function
+     * @param {Object} associationWithOldData - 包含其他数据的文章分类对象
+     * @returns {Promise} 包含更新结果的Promise对象
+     */
+    updateAssociation(association) {
+        return request({
+            url: `/association/update`,
+            method: 'put',
+            data: association
+        })
+    },
+
+    /**
+     * 删除文章分类
+     * @function
+     * @param {Object} association - 文章分类对象
+     * @returns {Promise} 包含删除结果的Promise对象
+     */
+    deleteAssociation(id) {
+        return request({
+            url: `/association/delete/${id}`,
+            method: 'delete',
+        })
+    },
+
+    /**
+     * 获取所有可用栏目
+     * @function
+     * @returns {Promise} 包含所有可用栏目的Promise对象
+     */
+    getAllAvailableCategory() {
+        return request({
+            url: '/association/allAvailableCategory',
+            method: 'get'
+        })
+    },
+
+    /**
+     * 获取排除了已建立关联的可用文章
+     * @function
+     * @param {String} categoryId - 栏目ID
+     * @returns {Promise} 包含排除了已建立关联的可用文章的Promise对象
+     */
+    getAllAvailableArticle(categoryId) {
+        return request({
+            url: `/association/allAvailableArticle/${categoryId}`,
+            method: 'get'
+        })
+    },
+
+};

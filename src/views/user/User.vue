@@ -252,7 +252,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      getAllStudent();
+      // getAllStudent();
     });
 
     return {
