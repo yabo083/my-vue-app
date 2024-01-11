@@ -321,5 +321,17 @@ export default {
             method: 'get'
         })
     },
+    
+    /**
+     * 获取已建立关联的文章
+     * @param {String} categoryId - 栏目ID
+     * @returns {Promise} 包含已建立关联的文章的Promise对象
+     */
+    getAllConnectedArticle(categoryId) {
+        return request({
+            url: `/association/allConnectedArticle/${categoryId}`,
+            method: 'get'
+        })
+    },
 
 };

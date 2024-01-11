@@ -30,6 +30,9 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
+            <el-dropdown-item>
+              <router-link :to="{name: 'front'}">前台</router-link>
+            </el-dropdown-item>
             <el-dropdown-item>个人中心</el-dropdown-item>
             <el-dropdown-item>退出</el-dropdown-item>
           </el-dropdown-menu>
