@@ -93,7 +93,7 @@
       </el-form-item>
       <el-form-item label="选择文章" prop="selectedArticleDtoList">
         <el-select
-          v-model="currentAssociation.selectedArticleDtoList"
+          v-model="currentAssociation.selectedArticleDtoList[0].title"
           placeholder="请选择"
           value-key="articleId"
         >
@@ -164,12 +164,19 @@ export default {
     };
 
     // 编辑关联
-    const handleEdit = (association) => {
+    const handleEdit = async (association) => {
       console.log(association);
       editDialogVisible.value = true;
       currentAssociation.id = association.id;
       currentAssociation.selectedCategoryDtoList = association.categoryDto;
-      currentAssociation.selectedArticleDtoList = association.articleDto;
+      // 确保 selectedArticleDtoList 是一个数组
+      if (!Array.isArray(association.articleDto)) {
+        currentAssociation.selectedArticleDtoList = [association.articleDto];
+      } else {
+        currentAssociation.selectedArticleDtoList = association.articleDto;
+      }
+      // 获取对应栏目的文章列表
+      await getAllAvailableArticle(association.categoryDto.categoryId);
       console.log(currentAssociation);
     };
 
