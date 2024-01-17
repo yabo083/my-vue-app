@@ -57,8 +57,7 @@
 <script>
 import { ref, reactive, onMounted } from "vue";
 import api from "../../api/api.js";
-import { VueShowdown } from 'vue-showdown';
-
+import { VueShowdown } from "vue-showdown";
 
 export default {
   components: {
@@ -70,7 +69,13 @@ export default {
 
     const getAllAvailableCategory = async () => {
       const res = await api.getAllAvailableCategory();
-      categoryList.value = res;
+      categoryList.value = [];
+      for (let category of res) {
+        const articles = await api.getAllConnectedArticle(category.categoryId);
+        if (articles.length > 0) {
+          categoryList.value.push(category);
+        }
+      }
       console.log(categoryList.value);
     };
 
