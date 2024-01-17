@@ -13,8 +13,14 @@
         v-for="item in noChildren()"
         :key="item.path"
         @click="clickMenu(item)"
-      >
-        <component class="icons" :is="item.icon" />
+        ><div class="icon" style="margin-right: 10px;">
+          <component
+            class="icons"
+            :is="item.icon"
+            v-if="!item.icon.startsWith('icon')"
+          />
+          <span class="iconfont" :class="item.icon" v-else />
+        </div>
         <span>{{ item.label }}</span>
       </el-menu-item>
 
@@ -25,7 +31,7 @@
         :key="item.path"
       >
         <template #title>
-          <component class="icons" :is="item.icon" />
+          <component style="margin-right: 10px;" class="icons" :is="item.icon" />
           <span>{{ item.label }}</span>
         </template>
 
@@ -57,14 +63,14 @@ export default {
         path: "/user",
         name: "user",
         label: "用户管理",
-        icon: "user",
+        icon: "icon-user",
         // url: "UserManage/UserManage",
       },
       {
         path: "/link",
         name: "link",
         label: "友链管理",
-        icon: "link",
+        icon: "icon-link",
         // url: "LinkManage/LinkManage",
       },
       {
@@ -79,7 +85,7 @@ export default {
         label: "文章管理",
         icon: "icon-article",
       },
-      
+
       {
         path: "/category",
         name: "category",
@@ -134,11 +140,20 @@ export default {
       });
     };
 
+    const getIconComponent = (icon) => {
+      if (icon.startsWith("")) {
+        return "component"; // Element UI 的图标使用 'component' 标签
+      } else if (icon.startsWith("iconfont")) {
+        return "span"; // Iconfont 的图标使用 'span' 标签
+      }
+    };
+
     return {
       noChildren,
       hasChildren,
       sidebar,
       clickMenu,
+      getIconComponent,
     };
   },
 };
@@ -162,7 +177,7 @@ export default {
 }
 .el-menu {
   border-right: none;
-  h3{
+  h3 {
     line-height: 48px;
     text-align: center;
     color: #fff;
