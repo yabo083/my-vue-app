@@ -81,7 +81,6 @@
         <el-select
           v-model="currentAssociation.selectedCategoryDtoList"
           placeholder="请选择"
-          @change="handleCategoryChange"
           value-key="categoryId"
         >
           <el-option

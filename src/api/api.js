@@ -141,9 +141,9 @@ export default {
      * @function
      * @returns {Promise} 包含文章列表的Promise对象
      */
-    getArticleList() {
+    getArticleList(pageNum, pageSize) {
         return request({
-            url: '/article/list',
+            url: `/article/list/${pageNum}/${pageSize}`,
             method: 'get'
         })
     },
