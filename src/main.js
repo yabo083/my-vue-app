@@ -8,6 +8,7 @@ import { createPinia } from 'pinia' // 导入 Pinia
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import api from './api/api.js'
 import './assets/icons/iconfont.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 const app = createApp(App)
 

@@ -103,6 +103,14 @@ const routes = [
             title: '前台首页'
         },
     },
+    {
+        path: '/user/login',
+        name: 'login',
+        component: () => import('../views/login/Login.vue'),
+        meta: {
+            title: '用户登录'
+        },
+    }
 ];
 
 const router = createRouter({
