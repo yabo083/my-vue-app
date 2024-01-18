@@ -68,6 +68,7 @@ export default {
     const handleAdd = () => {
       dialogTitle.value = "新增分类";
       dialogVisible.value = true;
+      Object.keys(currentCategory).forEach((key) => delete currentCategory[key]);
     };
 
     // 编辑分类

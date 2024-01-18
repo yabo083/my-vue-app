@@ -76,10 +76,11 @@ export default {
 
     // 新增友链
     const handleAdd = () => {
-      console.log(currentLink); // 使用一个空对象重置 currentLink 对象的所有属性
+      // console.log(currentLink); // 使用一个空对象重置 currentLink 对象的所有属性
       // Object.assign(currentLink, {});
       dialogTitle.value = "新增友链"; // 设置模态框的标题为 "新增友链"
       dialogVisible.value = true; // 设置模态框的可见性为 true，这将会使模态框显示出来
+      Object.keys(currentLink).forEach((key) => delete currentLink[key]);
     };
 
     // 编辑友链

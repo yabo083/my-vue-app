@@ -67,6 +67,7 @@ export default {
     const handleAdd = () => {
       dialogTitle.value = "新增公司信息";
       dialogVisible.value = true;
+      Object.keys(currentInfo).forEach((key) => delete currentInfo[key]);
     };
 
     // 编辑公司信息

@@ -128,6 +128,8 @@ export default {
   }
   .el-menu-demo .el-menu-item.is-active {
     background-color: #464646;
+    font-weight: bold;
+    font-size: medium;
   }
 
   .infinite-list {

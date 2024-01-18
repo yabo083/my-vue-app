@@ -46,6 +46,9 @@
       <el-form-item label="文章内容" prop="content">
         <el-input type="textarea" v-model="currentArticle.content"></el-input>
       </el-form-item>
+      <el-form-item label="作者" prop="author">
+        <el-input v-model="currentArticle.author"></el-input>
+      </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="resetForm">取 消</el-button>
@@ -106,6 +109,7 @@ export default {
     const handleAdd = () => {
       dialogTitle.value = "新增文章";
       dialogVisible.value = true;
+      Object.keys(currentArticle).forEach((key) => delete currentArticle[key]);
     };
 
     // 编辑文章
